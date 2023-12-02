@@ -1,35 +1,45 @@
 import argparse
-import os
+import re
+from collections import defaultdict, namedtuple
 from pathlib import Path
 
 
 def handleLine(line, ctx=None):
-  print(line)
+    print(line)
 
-def process(ctx):
-  return 1
+
+def process1(ctx):
+    return 1
+
+
+def process2(ctx):
+    return 2
+
 
 def main(part, input):
-  filename = Path(__file__).with_name(input)
-  ctx = {}
+    filename = Path(__file__).with_name(input)
+    ctx = {}
 
-  with open(filename, 'r') as f:
-    for i, line in enumerate(f.readlines()):
-      l = line.strip()
-      if l:
-        handleLine(l, ctx)
+    with open(filename, 'r') as f:
+        for i, line in enumerate(f.readlines()):
+            l = line.strip()
+            if l:
+                handleLine(l, ctx)
 
-  result = process(ctx)
-  return result
+    if part == 1:
+        result = process1(ctx)
+    else:
+        result = process2(ctx)
+    return result
 
 
 def init():
-  parser = argparse.ArgumentParser()
-  parser.add_argument('--part', type=int, default=1)
-  parser.add_argument('--input', type=str, default='test.txt')
-  args = parser.parse_args()
-  result = main(args.part, args.input)
-  print(result)
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--input', type=str, default='test.txt')
+    args = parser.parse_args()
+    result = main(1, args.input)
+    result = main(2, args.input)
+    print(result)
 
 
 init()
