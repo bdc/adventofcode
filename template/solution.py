@@ -1,7 +1,7 @@
 import argparse
-import re
 from collections import defaultdict, namedtuple
 from pathlib import Path
+import re
 
 
 def handleLine(line, ctx=None):
@@ -38,6 +38,7 @@ def init():
     parser.add_argument('--input', type=str, default='test.txt')
     args = parser.parse_args()
     result = main(1, args.input)
+    print(result)
     result = main(2, args.input)
     print(result)
 
