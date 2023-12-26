@@ -4,7 +4,7 @@ from pathlib import Path
 import re
 
 
-def handleLine(line, ctx=None):
+def handleLine(line, i, ctx=None):
     print(line)
 
 
@@ -24,7 +24,7 @@ def main(part, input):
         for i, line in enumerate(f.readlines()):
             l = line.strip()
             if l:
-                handleLine(l, ctx)
+                handleLine(l, i, ctx)
 
     if part == 1:
         result = process1(ctx)
