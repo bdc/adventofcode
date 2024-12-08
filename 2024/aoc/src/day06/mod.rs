@@ -81,7 +81,7 @@ fn find_guard_ijv(grid: &HashMap<(i32, i32), char>) -> Result<(i32, i32, char), 
         .ok_or("No guard found")
 }
 
-fn add_obstacle(grid: &mut HashMap<(i32, i32), char>) {
+fn _add_obstacle(grid: &mut HashMap<(i32, i32), char>) {
     let guard_ijv_result = find_guard_ijv(grid);
     if guard_ijv_result.is_err() {
         return;
@@ -127,28 +127,44 @@ fn _print_grid(grid: &HashMap<(i32, i32), char>) {
     }
 }
 
+fn populate_xs(grid: &mut HashMap<(i32, i32), char>) {
+    while step(grid).is_ok() {}
+}
+
 fn part1(input: &HashMap<(i32, i32), char>) -> u32 {
     let mut grid = input.clone();
-    while step(&mut grid).is_ok() {}
+    populate_xs(&mut grid);
     // _print_grid(&grid);
     grid.values().filter(|v| v == &&'X').count() as u32
 }
 
 fn part2(input: &HashMap<(i32, i32), char>) -> u32 {
     let mut grid = input.clone();
+    populate_xs(&mut grid);
     let mut loops = 0;
     let mut non_loops = 0;
-    while step(&mut grid).is_ok() {
-        let mut grid2 = grid.clone();
-        add_obstacle(&mut grid2);
-        if is_loop(&mut grid2) {
-            loops += 1;
-        } else {
-            non_loops += 1;
+    grid.keys().filter(|k| grid.get(k) == Some(&'X')).for_each(|k| {
+        let mut grid2 = input.clone();
+        grid2.insert(*k, '#');
+        match is_loop(&mut grid2) {
+            true => loops += 1,
+            false => non_loops += 1,
         }
         if (loops + non_loops) % 10 == 0 {
             println!("{} {}", loops, non_loops);
         }
-    }
+    });
+    // while step(&mut grid).is_ok() {
+    //     let mut grid2 = grid.clone();
+    //     add_obstacle(&mut grid2);
+    //     if is_loop(&mut grid2) {
+    //         loops += 1;
+    //     } else {
+    //         non_loops += 1;
+    //     }
+    //     if (loops + non_loops) % 10 == 0 {
+    //         println!("{} {}", loops, non_loops);
+    //     }
+    // }
     loops
 }

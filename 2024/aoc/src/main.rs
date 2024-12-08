@@ -1,21 +1,24 @@
 use std::env;
 
-mod day1;
-mod day2;
-mod day3;
-mod day4;
-mod day5;
-mod day6;
-mod day7;
+mod day01;
+mod day02;
+mod day03;
+mod day04;
+mod day05;
+mod day06;
+mod day07;
+mod day08;
+mod util;
 
-static FNS: [fn(Vec<String>); 7] = [
-    day1::main,
-    day2::main,
-    day3::main,
-    day4::main,
-    day5::main,
-    day6::main,
-    day7::main,
+static FNS: [fn(Vec<String>); 8] = [
+    day01::main,
+    day02::main,
+    day03::main,
+    day04::main,
+    day05::main,
+    day06::main,
+    day07::main,
+    day08::main,
 ];
 
 fn main() {
