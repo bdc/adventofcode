@@ -1,5 +1,6 @@
 use std::collections::HashMap;
 
+#[allow(unused)]
 pub fn parse_input_to_grid(input: &str) -> HashMap<(i32, i32), char> {
     input
         .lines()
@@ -12,7 +13,8 @@ pub fn parse_input_to_grid(input: &str) -> HashMap<(i32, i32), char> {
         .collect()
 }
 
-pub fn _print_grid(grid: &HashMap<(i32, i32), char>) {
+#[allow(unused)]
+pub fn print_grid(grid: &HashMap<(i32, i32), char>) {
     let min_i = *grid.keys().map(|(i, _)| i).min().unwrap();
     let max_i = *grid.keys().map(|(i, _)| i).max().unwrap();
     let min_j = *grid.keys().map(|(_, j)| j).min().unwrap();
