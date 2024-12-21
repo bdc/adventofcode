@@ -20,9 +20,10 @@ mod day17;
 mod day18;
 mod day19;
 mod day20;
+mod day21;
 mod util;
 
-static FNS: [fn(Vec<String>); 20] = [
+static FNS: [fn(Vec<String>); 21] = [
     day01::main,
     day02::main,
     day03::main,
@@ -43,6 +44,7 @@ static FNS: [fn(Vec<String>); 20] = [
     day18::main,
     day19::main,
     day20::main,
+    day21::main,
 ];
 
 fn main() {
